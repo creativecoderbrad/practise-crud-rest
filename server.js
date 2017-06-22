@@ -37,14 +37,18 @@ app.get('/', function(req, res) {
       sleep: 4
     }
   ];
+  // changing our array
+  function manipulate () {
+    places.splice(1,2);
+  }
+  
+  manipulate();
 
   res.render('index', {
     title: 'cottages',
     cottages: places
   });
 })
-
-
 
 // start server
 app.listen(3000, function(req, res) {
