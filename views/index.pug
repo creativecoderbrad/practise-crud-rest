@@ -1,0 +1,9 @@
+
+extends layout
+
+block content
+  h3 #{title}
+  
+  ul
+    each places, i in cottages
+      li= places.name
