@@ -4,6 +4,10 @@ extends layout
 block content
   h3 #{title}
   
-  ul
+  div.wrap
     each places, i in cottages
-      li= places.name
+      div
+        h2=places.name 
+        p=places.loc 
+        p=places.price 
+        p=places.sleeps

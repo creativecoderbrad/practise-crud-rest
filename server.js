@@ -2,55 +2,55 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
+mongoose.connect('mongodb://localhost/routes-ajax');
+var db = mongoose.connection;
+
+
+//check connection
+db.once('open', function(){
+  console.log('Connected to mongoDB ...');
+});
+
+// check for db err
+db.on('error', function(err){
+  console.log(err);
+});
+
+// initialiase app
 var app = express();
 
+// bring in models
+var Article = require('./models/article')
 
 // bring in pug
-
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // home route
 app.get('/', function(req, res) {
 
-  var places = [
-    {
-      id: 1,
-      name: 'coastal grove',
-      loc: 'devon',
-      price: 499.00,
-      sleep: 5
-    },
-    {
-      id: 2,
-      name: 'harbour point',
-      loc: 'cornwall',
-      price: 750.00,
-      sleep: 3
-    },
-    {
-      id: 3,
-      name: 'sunrise place',
-      loc: 'cornwall',
-      price: 550.00,
-      sleep: 4
-    }
-  ];
-  // changing our array
-  function manipulate () {
-    places.splice(1,2);
-  }
-  
-  manipulate();
+  Article.find({  }, function (err, articles) {
 
-  res.render('index', {
-    title: 'cottages',
-    cottages: places
+
+    displayContent ();
+
+    function displayContent () {
+      res.render('index', {
+        title: 'cottages',
+        cottages: articles
+      });
+    }
+
   });
-})
+
+});
 
 // start server
 app.listen(3000, function(req, res) {
   console.log('started');
 });
+
+
+//
