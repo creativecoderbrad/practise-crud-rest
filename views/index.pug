@@ -1,13 +1,14 @@
 
+
 extends layout
 
 block content
-  h3 #{title}
+  h3.title #{title}
   
   div.wrap
-    each places, i in cottages
-      div
-        h2=places.name 
-        p=places.loc 
-        p=places.price 
-        p=places.sleeps
+    each place, i in cottages
+      div.listing
+        h3=place.name 
+        p=place.loc 
+        p=place.price 
+        p=place.sleeps

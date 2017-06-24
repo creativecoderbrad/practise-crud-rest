@@ -1,9 +1,8 @@
-
 const mongoose = require('mongoose');
 
-// article schema
+// listing schema
 
-var articleSchema = mongoose.Schema({
+var listingSchema = mongoose.Schema({
 
  name: {
    type: String,
@@ -25,4 +24,4 @@ var articleSchema = mongoose.Schema({
 
 //
 
-var Article = module.exports = mongoose.model('Article', articleSchema);
+var Listings = module.exports = mongoose.model('Listings', listingSchema);

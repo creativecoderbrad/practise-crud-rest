@@ -1,8 +1,10 @@
 
+
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+
 
 mongoose.connect('mongodb://localhost/routes-ajax');
 var db = mongoose.connection;
@@ -22,29 +24,39 @@ db.on('error', function(err){
 var app = express();
 
 // bring in models
-var Article = require('./models/article')
+var Listings = require('./models/listing')
 
 // bring in pug
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+
+// body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
+// set public folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 // home route
 app.get('/', function(req, res) {
 
-  Article.find({  }, function (err, articles) {
+  Listings.find({ }, function (err, cottages) {
+
+    // get each individual listing
+
+    // if individual listing < 10
+
+      // push to new array
 
 
-    displayContent ();
-
-    function displayContent () {
-      res.render('index', {
-        title: 'cottages',
-        cottages: articles
-      });
-    }
+    res.render('index', {
+      title: 'cottages',
+      cottages: cottages
+    });
 
   });
-
 });
 
 // start server
