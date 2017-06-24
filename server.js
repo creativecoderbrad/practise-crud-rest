@@ -46,6 +46,7 @@ app.get('/', function(req, res) {
 
     // get each individual listing
 
+
     // if individual listing < 10
 
       // push to new array
