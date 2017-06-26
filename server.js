@@ -50,12 +50,16 @@ app.get('/', function(req, res) {
     for (i = 0; i < cottages.length; i ++) {
 
       var each = cottages[i];
+
         // if individual sleeps < 10
 
         if (each.sleeps < 6 ) {
+
           // push to results arr
           results.push(each);
+
         }
+
     }
 
     console.log(results);
