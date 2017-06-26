@@ -44,17 +44,26 @@ app.get('/', function(req, res) {
 
   Listings.find({ }, function (err, cottages) {
 
+    var results = [];
+
     // get each individual listing
+    for (i = 0; i < cottages.length; i ++) {
 
+      var each = cottages[i];
+        // if individual sleeps < 10
 
-    // if individual listing < 10
+        if (each.sleeps < 6 ) {
+          // push to results arr
+          results.push(each);
+        }
+    }
 
-      // push to new array
+    console.log(results);
 
 
     res.render('index', {
       title: 'cottages',
-      cottages: cottages
+      // cottages: cottages
     });
 
   });
