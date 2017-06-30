@@ -44,30 +44,31 @@ app.get('/', function(req, res) {
 
   Listings.find({ }, function (err, cottages) {
 
-    var results = [];
+    // var results = [];
+    //
+    // // get each individual listing
+    // for (i = 0; i < cottages.length; i ++) {
+    //
+    //   var each = cottages[i];
+    //
+    //     // if individual sleeps < 10
+    //
+    //     if (each.sleeps < 6 ) {
+    //
+    //       // push to results arr
+    //       results.push(each);
+    //
+    //     }
+    // }
 
-    // get each individual listing
-    for (i = 0; i < cottages.length; i ++) {
+    cottages.reverse();
 
-      var each = cottages[i];
-
-        // if individual sleeps < 10
-
-        if (each.sleeps < 6 ) {
-
-          // push to results arr
-          results.push(each);
-
-        }
-
-    }
-
-    console.log(results);
+    console.log(cottages);
 
 
     res.render('index', {
       title: 'cottages',
-      // cottages: cottages
+      cottages: cottages
     });
 
   });
